@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 
 public class BaseDataObject {
     @Column(nullable = false, updatable = false)
-    private LocalDateTime createdTime;
+    private LocalDateTime createdDateTime;
 
     @Column(nullable = false)
-    private LocalDateTime modifiedTime;
+    private LocalDateTime modifiedDateTime;
 }
