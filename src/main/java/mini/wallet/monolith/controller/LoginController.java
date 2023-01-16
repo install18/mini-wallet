@@ -3,7 +3,7 @@ package mini.wallet.monolith.controller;
 
 import mini.wallet.monolith.model.request.LoginRequest;
 import mini.wallet.monolith.model.response.LoginResponse;
-import mini.wallet.monolith.service.user.UserService;
+import mini.wallet.monolith.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

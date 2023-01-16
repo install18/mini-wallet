@@ -1,4 +1,4 @@
-package mini.wallet.monolith.service.user;
+package mini.wallet.monolith.service;
 
 import mini.wallet.monolith.builder.UserBuilder;
 import mini.wallet.monolith.dal.dataobject.UserDO;
