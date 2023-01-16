@@ -22,12 +22,14 @@ public class UserService {
     }
 
     public UserRegisterResponse register(UserRegisterRequest userRegisterRequest) {
-        UserRegisterResponse userRegisterResponse = new UserRegisterResponse();
-
         checkEmailAvailability(userRegisterRequest.getEmail());
-        UserDO userDO = insertUser(userRegisterRequest);
+
+        UserDO userDO = UserBuilder.buildUserDOFromUserRegisterRequest(userRegisterRequest);
+        userRepository.save(userDO);
+
         User user = UserBuilder.buildUserFromUserDO(userDO);
 
+        UserRegisterResponse userRegisterResponse = new UserRegisterResponse();
         userRegisterResponse.setUser(user);
 
         return userRegisterResponse;
@@ -49,7 +51,6 @@ public class UserService {
 
     private UserDO queryByEmail(String email) {
         Optional<UserDO> userDOOptional = userRepository.queryByEmail(email);
-
         Assert.isTrue(userDOOptional.isPresent(), "Email doesn't exist");
 
         return userDOOptional.get();
@@ -58,10 +59,5 @@ public class UserService {
     private void checkEmailAvailability(String email) {
         Optional<UserDO> userDOOptional = userRepository.queryByEmail(email);
         Assert.isTrue(userDOOptional.isEmpty(), "Email taken");
-    }
-
-    private UserDO insertUser(UserRegisterRequest userRegisterRequest) {
-        UserDO userDO = UserBuilder.buildUserDOFromRegisterRequest(userRegisterRequest);
-        return userRepository.save(userDO);
     }
 }
