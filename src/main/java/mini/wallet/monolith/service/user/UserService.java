@@ -5,9 +5,9 @@ import mini.wallet.monolith.dal.dataobject.UserDO;
 import mini.wallet.monolith.dal.repository.UserRepository;
 import mini.wallet.monolith.model.User;
 import mini.wallet.monolith.model.request.LoginRequest;
-import mini.wallet.monolith.model.request.RegisterRequest;
+import mini.wallet.monolith.model.request.UserRegisterRequest;
 import mini.wallet.monolith.model.response.LoginResponse;
-import mini.wallet.monolith.model.response.RegisterResponse;
+import mini.wallet.monolith.model.response.UserRegisterResponse;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -21,16 +21,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public RegisterResponse register(RegisterRequest registerRequest) {
-        RegisterResponse registerResponse = new RegisterResponse();
+    public UserRegisterResponse register(UserRegisterRequest userRegisterRequest) {
+        UserRegisterResponse userRegisterResponse = new UserRegisterResponse();
 
-        checkEmailAvailability(registerRequest.getEmail());
-        UserDO userDO = insertUser(registerRequest);
+        checkEmailAvailability(userRegisterRequest.getEmail());
+        UserDO userDO = insertUser(userRegisterRequest);
         User user = UserBuilder.buildUserFromUserDO(userDO);
 
-        registerResponse.setUser(user);
+        userRegisterResponse.setUser(user);
 
-        return registerResponse;
+        return userRegisterResponse;
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
@@ -60,8 +60,8 @@ public class UserService {
         Assert.isTrue(userDOOptional.isEmpty(), "Email taken");
     }
 
-    private UserDO insertUser(RegisterRequest registerRequest) {
-        UserDO userDO = UserBuilder.buildUserDOFromRegisterRequest(registerRequest);
+    private UserDO insertUser(UserRegisterRequest userRegisterRequest) {
+        UserDO userDO = UserBuilder.buildUserDOFromRegisterRequest(userRegisterRequest);
         return userRepository.save(userDO);
     }
 }

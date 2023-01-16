@@ -1,7 +1,7 @@
 package mini.wallet.monolith.controller;
 
-import mini.wallet.monolith.model.request.RegisterRequest;
-import mini.wallet.monolith.model.response.RegisterResponse;
+import mini.wallet.monolith.model.request.UserRegisterRequest;
+import mini.wallet.monolith.model.response.UserRegisterResponse;
 import mini.wallet.monolith.service.user.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +18,7 @@ public class RegisterController {
     }
 
     @PostMapping
-    public RegisterResponse register(@RequestBody RegisterRequest registerRequest) {
-        return userService.register(registerRequest);
+    public UserRegisterResponse register(@RequestBody UserRegisterRequest userRegisterRequest) {
+        return userService.register(userRegisterRequest);
     }
 }

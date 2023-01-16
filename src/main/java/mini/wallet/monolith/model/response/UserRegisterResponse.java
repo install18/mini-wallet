@@ -8,6 +8,6 @@ import mini.wallet.monolith.model.User;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterResponse {
+public class UserRegisterResponse {
     private User user;
 }

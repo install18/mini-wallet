@@ -2,20 +2,20 @@ package mini.wallet.monolith.builder;
 
 import mini.wallet.monolith.dal.dataobject.UserDO;
 import mini.wallet.monolith.model.User;
-import mini.wallet.monolith.model.request.RegisterRequest;
+import mini.wallet.monolith.model.request.UserRegisterRequest;
 
 import java.util.UUID;
 
 public class UserBuilder {
-    public static UserDO buildUserDOFromRegisterRequest(RegisterRequest registerRequest) {
+    public static UserDO buildUserDOFromRegisterRequest(UserRegisterRequest userRegisterRequest) {
         UserDO userDO = new UserDO();
 
         userDO.setUserId(UUID.randomUUID().toString());
-        userDO.setEmail(registerRequest.getEmail());
-        userDO.setPassword(registerRequest.getPassword());
-        userDO.setAddress(registerRequest.getAddress());
-        userDO.setFullName(registerRequest.getFullName());
-        userDO.setPhoneNumber(registerRequest.getPhoneNumber());
+        userDO.setEmail(userRegisterRequest.getEmail());
+        userDO.setPassword(userRegisterRequest.getPassword());
+        userDO.setAddress(userRegisterRequest.getAddress());
+        userDO.setFullName(userRegisterRequest.getFullName());
+        userDO.setPhoneNumber(userRegisterRequest.getPhoneNumber());
 
         return userDO;
     }
