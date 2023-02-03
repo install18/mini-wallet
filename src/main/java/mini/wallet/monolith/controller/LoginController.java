@@ -1,4 +1,4 @@
-package mini.wallet.monolith.controller.api;
+package mini.wallet.monolith.controller;
 
 
 import mini.wallet.monolith.model.request.LoginRequest;
