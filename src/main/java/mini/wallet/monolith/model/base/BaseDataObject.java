@@ -12,10 +12,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class BaseDataObject {
-    @Column(updatable = false)
-    @NotBlank
+    @Column(updatable = false, nullable = false)
     private LocalDateTime createdDateTime;
 
-    @NotBlank
+    @Column(nullable = false)
     private LocalDateTime modifiedDateTime;
 }
