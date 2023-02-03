@@ -1,8 +1,7 @@
 package mini.wallet.monolith.service;
 
-import jakarta.transaction.Transactional;
 import mini.wallet.monolith.dal.dataobject.CustomerDO;
-import mini.wallet.monolith.dal.repository.CustomerRepository;
+import mini.wallet.monolith.dal.repository.CustomerDAO;
 import mini.wallet.monolith.helper.builder.CustomerBuilder;
 import mini.wallet.monolith.model.Customer;
 import mini.wallet.monolith.model.request.CustomerRegisterRequest;
@@ -16,18 +15,17 @@ import java.util.Optional;
 
 @Service
 public class CustomerService {
-    private final CustomerRepository customerRepository;
+    private final CustomerDAO customerDAO;
 
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    public CustomerService(CustomerDAO customerDAO) {
+        this.customerDAO = customerDAO;
     }
 
-    @Transactional
     public CustomerRegisterResponse register(CustomerRegisterRequest customerRegisterRequest) {
         checkEmailAvailability(customerRegisterRequest.getEmail());
 
         CustomerDO customerDO = CustomerBuilder.buildCustomerDOFromCustomerRegisterRequest(customerRegisterRequest);
-        customerRepository.save(customerDO);
+        customerDAO.save(customerDO);
 
         Customer customer = CustomerBuilder.buildCustomerFromCustomerDO(customerDO);
 
@@ -52,14 +50,14 @@ public class CustomerService {
     }
 
     private CustomerDO queryByEmail(String email) {
-        Optional<CustomerDO> customerDOOptional = customerRepository.queryByEmail(email);
+        Optional<CustomerDO> customerDOOptional = customerDAO.queryByEmail(email);
         Assert.isTrue(customerDOOptional.isPresent(), "Email doesn't exist");
 
         return customerDOOptional.get();
     }
 
     private void checkEmailAvailability(String email) {
-        Optional<CustomerDO> customerDOOptional = customerRepository.queryByEmail(email);
+        Optional<CustomerDO> customerDOOptional = customerDAO.queryByEmail(email);
         Assert.isTrue(customerDOOptional.isEmpty(), "Email taken");
     }
 }
