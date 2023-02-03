@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface TransactionRepository extends JpaRepository<TransactionDO, String> {
+public interface TransactionDAO extends JpaRepository<TransactionDO, String> {
     Optional<TransactionDO> queryByCustomerId(String customerId);
 }

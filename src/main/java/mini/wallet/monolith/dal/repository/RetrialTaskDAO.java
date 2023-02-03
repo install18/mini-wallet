@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface RetrialTaskRepository extends JpaRepository<RetrialTaskDO, String> {
+public interface RetrialTaskDAO extends JpaRepository<RetrialTaskDO, String> {
     Optional<RetrialTaskDO> queryByTransactionId(String transactionId);
 }
