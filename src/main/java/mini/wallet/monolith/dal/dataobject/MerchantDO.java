@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -24,6 +23,6 @@ public class MerchantDO extends BaseDataObject {
     @Column(updatable = false)
     private String merchantId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String merchantName;
 }

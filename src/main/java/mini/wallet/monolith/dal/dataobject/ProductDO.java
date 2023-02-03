@@ -23,11 +23,14 @@ public class ProductDO extends BaseDataObject {
     @Column(updatable = false)
     private String productId;
 
+    @Column(nullable = false)
     private String productName;
 
     private String description;
 
+    @Column(nullable = false)
     private String price;
 
+    @Column(nullable = false)
     private String providerId;
 }

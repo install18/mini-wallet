@@ -25,11 +25,13 @@ public class RetrialTaskDO extends BaseDataObject {
     @Column(updatable = false)
     private String retrialTaskId;
 
+    @Column(nullable = false)
     private String transactionId;
 
     private Integer count;
 
     private Integer max;
 
+    @Column(nullable = false)
     private LocalDateTime nextExecution;
 }

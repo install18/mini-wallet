@@ -23,11 +23,14 @@ public class ProductSnapshotDO extends BaseDataObject {
     @Column(updatable = false)
     private String productSnapshotId;
 
+    @Column(nullable = false)
     private String productSnapshotName;
 
     private String description;
 
+    @Column(nullable = false)
     private String price;
 
+    @Column(nullable = false)
     private String merchantId;
 }

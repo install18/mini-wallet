@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,7 +26,7 @@ public class CustomerDO extends BaseDataObject {
     @Column(updatable = false)
     private String customerId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String password;
 
     @Column(nullable = false, unique = true)

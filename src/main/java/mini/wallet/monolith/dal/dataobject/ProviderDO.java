@@ -5,7 +5,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -25,9 +24,10 @@ public class ProviderDO extends BaseDataObject {
     @Column(updatable = false)
     private String providerId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String providerName;
 
+    @Column(nullable = false)
     private String url;
 
     private String apiKey;

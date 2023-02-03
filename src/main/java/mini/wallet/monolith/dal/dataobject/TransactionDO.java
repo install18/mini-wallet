@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,27 +26,27 @@ public class TransactionDO extends BaseDataObject {
     @Column(updatable = false)
     private String transactionId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String transactionType;
 
-    @NotBlank
+    @Column(nullable = false)
     private BigDecimal amount;
 
-    @NotBlank
+    @Column(nullable = false)
     private String currency;
 
-    @NotBlank
+    @Column(nullable = false)
     private String customerId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String productId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String productSnapshotId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String providerId;
 
-    @NotBlank
+    @Column(nullable = false)
     private String status;
 }
