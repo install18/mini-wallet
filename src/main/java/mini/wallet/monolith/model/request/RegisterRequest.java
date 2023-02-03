@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterRequest {
-    @NotBlank
     private String fullName;
 
     @NotBlank
@@ -23,6 +22,5 @@ public class RegisterRequest {
     @NotBlank
     private String phoneNumber;
 
-    @NotBlank
     private String address;
 }
