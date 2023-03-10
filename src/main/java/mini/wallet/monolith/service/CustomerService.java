@@ -1,5 +1,6 @@
 package mini.wallet.monolith.service;
 
+import lombok.AllArgsConstructor;
 import mini.wallet.monolith.dal.dataobject.CustomerDO;
 import mini.wallet.monolith.dal.repository.CustomerDAO;
 import mini.wallet.monolith.helper.builder.CustomerBuilder;
@@ -8,18 +9,16 @@ import mini.wallet.monolith.model.request.CustomerRegisterRequest;
 import mini.wallet.monolith.model.request.LoginRequest;
 import mini.wallet.monolith.model.response.CustomerRegisterResponse;
 import mini.wallet.monolith.model.response.LoginResponse;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class CustomerService {
     private final CustomerDAO customerDAO;
-
-    public CustomerService(CustomerDAO customerDAO) {
-        this.customerDAO = customerDAO;
-    }
 
     public CustomerRegisterResponse register(CustomerRegisterRequest customerRegisterRequest) {
         checkEmailAvailability(customerRegisterRequest.getEmail());
@@ -36,10 +35,17 @@ public class CustomerService {
     }
 
     public LoginResponse login(LoginRequest loginRequest) {
-        LoginResponse loginResponse = new LoginResponse();
-
         CustomerDO customerDO = queryByEmail(loginRequest.getEmail());
         comparePassword(customerDO.getPassword(), loginRequest.getPassword());
+
+        return buildLoginResponse(customerDO);
+    }
+
+    private LoginResponse buildLoginResponse(CustomerDO customerDO){
+        LoginResponse loginResponse = new LoginResponse();
+
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDO, customer);
 
         return loginResponse;
     }

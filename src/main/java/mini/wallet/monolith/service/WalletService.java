@@ -1,5 +1,6 @@
 package mini.wallet.monolith.service;
 
+import lombok.AllArgsConstructor;
 import mini.wallet.monolith.dal.dataobject.WalletDO;
 import mini.wallet.monolith.dal.repository.WalletDAO;
 import mini.wallet.monolith.helper.builder.WalletBuilder;
@@ -9,12 +10,9 @@ import mini.wallet.monolith.model.response.WalletRegisterResponse;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class WalletService {
     private final WalletDAO walletDAO;
-
-    public WalletService(WalletDAO walletDAO) {
-        this.walletDAO = walletDAO;
-    }
 
     public WalletRegisterResponse register(WalletRegisterRequest walletRegisterRequest) {
         WalletDO walletDO = WalletBuilder.buildWalletDOFromWalletRegisterRequest(walletRegisterRequest);

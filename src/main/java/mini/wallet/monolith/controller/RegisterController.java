@@ -1,5 +1,6 @@
 package mini.wallet.monolith.controller;
 
+import lombok.AllArgsConstructor;
 import mini.wallet.monolith.model.request.CustomerRegisterRequest;
 import mini.wallet.monolith.model.request.RegisterRequest;
 import mini.wallet.monolith.model.request.WalletRegisterRequest;
@@ -8,30 +9,24 @@ import mini.wallet.monolith.model.response.RegisterResponse;
 import mini.wallet.monolith.model.response.WalletRegisterResponse;
 import mini.wallet.monolith.service.CustomerService;
 import mini.wallet.monolith.service.WalletService;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("api/register")
+@Controller
+@AllArgsConstructor
 public class RegisterController {
     private final CustomerService customerService;
     private final WalletService walletService;
 
-    public RegisterController(CustomerService customerService, WalletService walletService) {
-        this.customerService = customerService;
-        this.walletService = walletService;
-    }
-
     @PostMapping
-    public RegisterResponse register(@RequestBody RegisterRequest registerRequest) {
+    @Transactional
+    public RegisterResponse register(RegisterRequest registerRequest) {
         CustomerRegisterRequest customerRegisterRequest = buildCustomerRegisterRequest(registerRequest);
         CustomerRegisterResponse customerRegisterResponse = customerService.register(customerRegisterRequest);
 
         WalletRegisterRequest walletRegisterRequest = buildWalletRegisterRequest(customerRegisterResponse);
         WalletRegisterResponse walletRegisterResponse = walletService.register(walletRegisterRequest);
-
 
         return buildRegisterResponse(customerRegisterResponse, walletRegisterResponse);
     }
