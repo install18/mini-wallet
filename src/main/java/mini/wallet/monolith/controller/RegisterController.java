@@ -11,7 +11,6 @@ import mini.wallet.monolith.service.CustomerService;
 import mini.wallet.monolith.service.WalletService;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @AllArgsConstructor
@@ -19,7 +18,6 @@ public class RegisterController {
     private final CustomerService customerService;
     private final WalletService walletService;
 
-    @PostMapping
     @Transactional
     public RegisterResponse register(RegisterRequest registerRequest) {
         CustomerRegisterRequest customerRegisterRequest = buildCustomerRegisterRequest(registerRequest);

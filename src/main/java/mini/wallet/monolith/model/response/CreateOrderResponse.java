@@ -7,8 +7,5 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateTransactionResponse {
-    private String productId;
-    private String customerId;
-    private String merchantId;
+public class CreateOrderResponse {
 }
